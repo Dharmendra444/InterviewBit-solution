@@ -1,0 +1,96 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+ListNode* Solution::addTwoNumbers(ListNode* head1, ListNode* head2) {
+    
+    ListNode *p=NULL,*q=head1,*r; 
+    r=head1->next;
+    ListNode*s;
+    
+    // while(r){
+    //     q->next=p;
+    //     p=q;
+    //     q=r;
+    //     r=r->next;
+    // }
+   
+    // if(q) q->next=p;
+    // head1=q;
+    
+    // p=NULL;q=head2;
+    // r=head2->next;
+    
+    // while(r){
+    //     q->next=p;
+    //     p=q;
+    //     q=r;
+    //     r=r->next;
+    // }
+    // if(q) q->next=p;
+    // head2=q;
+    
+    p=head1;q=head2;
+    
+    int c=0,d;
+    
+    while(p and q){
+         r=p;s=q;
+        
+        d=(c+p->val+q->val)%10;
+        if((c+p->val+q->val)>=10) c=1;
+        else c=0;
+        
+        p->val=d;
+        
+       
+       
+        p=p->next;
+        q=q->next;
+        
+        
+    }
+    
+    //cout<<->val<<endl;
+   
+    while(p){
+        //cout<<p->val<<endl; 
+        r=p;
+        d=(c+p->val)%10;
+        if((c+p->val)>=10) c=1;
+         else c=0;
+        
+        r->val=d;
+        //r=p;
+        //cout<<r->val<<" ";
+        p=p->next;
+    }
+    
+    
+   
+    while(q){
+         
+        
+        d=(c+q->val)%10;
+        if((c+q->val)>=10) c=1;
+         else c=0;
+        
+        r->next=new ListNode(d);
+        r=r->next;
+        q=q->next;
+    }
+    
+    if(c==1)
+    {
+        r->next=new ListNode(c);
+        r=r->next;
+    }
+    
+    return head1;
+    
+}
+
